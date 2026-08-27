@@ -337,3 +337,81 @@ a { color: inherit; text-decoration: none; }
   .reveal { opacity: 1; transform: none; filter: none; }
   html { scroll-behavior: auto; }
 }
+
+/* ---------- Mobile menu (hamburger + dropdown) ---------- */
+.nav__toggle {
+  display: none;
+  margin-left: auto;
+  width: 46px;
+  height: 46px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  z-index: 30;
+}
+.nav__toggle span {
+  display: block;
+  width: 26px;
+  height: 2.5px;
+  border-radius: 2px;
+  background: var(--white);
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.2s ease;
+}
+.nav__toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(8.5px) rotate(45deg); }
+.nav__toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.nav__toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-8.5px) rotate(-45deg); }
+
+.mobile-menu {
+  position: fixed;
+  inset: var(--nav-h) 0 0 0;
+  z-index: 15;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 8px var(--pad-x) 44px;
+  background: rgba(8, 9, 6, 0.97);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: opacity 0.32s ease, transform 0.32s cubic-bezier(0.22, 1, 0.36, 1), visibility 0.32s;
+}
+body.menu-open .mobile-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+body.menu-open { overflow: hidden; }
+
+.mobile-menu__links { display: flex; flex-direction: column; }
+.mobile-menu__links a {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(1.8rem, 8vw, 2.4rem);
+  letter-spacing: -0.02em;
+  color: var(--white);
+  padding: 18px 2px;
+  border-bottom: 1px solid var(--line);
+  transition: color 0.2s ease, padding-left 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.mobile-menu__links a:hover,
+.mobile-menu__links a:active { color: var(--green-bright); padding-left: 10px; }
+.mobile-menu__cta { margin-top: 34px; align-self: flex-start; }
+
+@media (max-width: 999px) {
+  .nav__toggle { display: inline-flex; }
+}
+@media (min-width: 1000px) {
+  .mobile-menu { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mobile-menu,
+  .nav__toggle span,
+  .mobile-menu__links a { transition: none; }
+}
