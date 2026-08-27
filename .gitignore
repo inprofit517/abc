@@ -1,0 +1,10 @@
+# macOS
+.DS_Store
+
+# Local preview / tooling config
+.claude/
+
+# Unused source originals — only the optimized assets are referenced by the site
+assets/hero-desktop.png
+assets/hero-mobile.png
+assets/logo-original.png
