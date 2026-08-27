@@ -389,6 +389,14 @@ body.menu-open .mobile-menu {
 }
 body.menu-open { overflow: hidden; }
 
+/* Solid dark navbar while the mobile menu is open */
+.nav { transition: background-color 0.32s ease; }
+body.menu-open .nav {
+  background: rgba(8, 9, 6, 0.97);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
 .mobile-menu__links { display: flex; flex-direction: column; }
 .mobile-menu__links a {
   font-family: var(--font-display);
