@@ -600,9 +600,12 @@ body.booking-open .booking-modal { transform: none; }
 
 /* ============ Leistungen ============ */
 .leistungen {
+  position: relative;
+  z-index: 2;
   background: var(--ink);
   padding: clamp(72px, 10vw, 132px) var(--pad-x);
-  border-top: 1px solid rgba(246, 247, 242, 0.07);
+  border-top-left-radius: clamp(20px, 2.6vw, 34px);
+  border-top-right-radius: clamp(20px, 2.6vw, 34px);
 }
 .section-inner { max-width: 1200px; margin: 0 auto; }
 .section-head { max-width: 640px; margin-bottom: clamp(40px, 5vw, 62px); }
