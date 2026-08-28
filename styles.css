@@ -701,3 +701,21 @@ body.booking-open .booking-modal { transform: none; }
 @media (max-width: 560px) {
   .svc-grid { grid-template-columns: 1fr; }
 }
+
+/* Scroll reveal (only when JS is active, so no-JS keeps content visible) */
+html.js .reveal-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+html.js .reveal-up.is-visible {
+  opacity: 1;
+  transform: none;
+}
+html.js .svc-card.reveal-up:nth-child(3n + 2) { transition-delay: 0.08s; }
+html.js .svc-card.reveal-up:nth-child(3n + 3) { transition-delay: 0.16s; }
+
+@media (prefers-reduced-motion: reduce) {
+  html.js .reveal-up { opacity: 1; transform: none; transition: none; }
+}

@@ -5,10 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>abc Elektrotechnik AG — Moderne Elektrotechnik</title>
   <meta name="description" content="abc Elektrotechnik AG — Moderne Elektrotechnik. Von der ersten Planung bis zur sicheren Umsetzung." />
+  <script>document.documentElement.classList.add('js');</script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=16" />
+  <link rel="stylesheet" href="styles.css?v=17" />
 </head>
 <body>
 <!--
@@ -83,14 +84,14 @@
     <!-- ============ Leistungen ============ -->
     <section class="leistungen" id="leistungen" aria-labelledby="leistungen-title">
       <div class="section-inner">
-        <header class="section-head">
+        <header class="section-head reveal-up">
           <h2 class="section-title" id="leistungen-title">Unsere Leistungen</h2>
           <p class="section-lead">Verteilerbau, Steuerungen und Service — vom Wohnungsbau bis zur Industrie, gefertigt nach aktueller EN-Norm.</p>
         </header>
 
         <div class="svc-grid">
           <!-- 1 -->
-          <article class="svc-card">
+          <article class="svc-card reveal-up">
             <div class="svc-media svc-media--photo">
               <img src="assets/normverteiler.jpg" alt="Verdrahteter Normverteiler in der Werkstatt der abc Elektrotechnik AG" loading="lazy" />
             </div>
@@ -102,7 +103,7 @@
           </article>
 
           <!-- 2 -->
-          <article class="svc-card">
+          <article class="svc-card reveal-up">
             <div class="svc-media svc-media--photo">
               <img src="assets/energieverteilung.jpg" alt="Niederspannungs-Hauptverteilung mit Wandlermessungen von der abc Elektrotechnik AG" loading="lazy" />
             </div>
@@ -114,7 +115,7 @@
           </article>
 
           <!-- 3 -->
-          <article class="svc-card">
+          <article class="svc-card reveal-up">
             <div class="svc-media svc-media--photo">
               <img src="assets/steuerungen.jpg" alt="Steuerschrank mit SPS und Reihenklemmen der abc Elektrotechnik AG" loading="lazy" />
             </div>
@@ -126,7 +127,7 @@
           </article>
 
           <!-- 4 -->
-          <article class="svc-card">
+          <article class="svc-card reveal-up">
             <div class="svc-media svc-media--photo">
               <img src="assets/aussenkabinen.jpg" alt="Freistehende Aussenkabine mit CEE-Anschlüssen der abc Elektrotechnik AG" loading="lazy" />
             </div>
@@ -138,7 +139,7 @@
           </article>
 
           <!-- 5 -->
-          <article class="svc-card">
+          <article class="svc-card reveal-up">
             <div class="svc-media svc-media--photo">
               <img src="assets/speziallosungen.jpg" alt="Kundenspezifische KNX-Steuerbox mit ABB i-bus und Reihenklemmen" loading="lazy" />
             </div>
@@ -150,7 +151,7 @@
           </article>
 
           <!-- 6 -->
-          <article class="svc-card">
+          <article class="svc-card reveal-up">
             <div class="svc-media svc-media--photo">
               <img src="assets/montage.jpg" alt="Lieferwagen der abc Elektrotechnik AG für Schaltanlagen- und Steuerungsbau" loading="lazy" />
             </div>
@@ -419,6 +420,28 @@
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape' && document.body.classList.contains('booking-open')) closeBooking();
     });
+
+    /* ---------- Scroll reveal ---------- */
+    (function () {
+      var els = document.querySelectorAll('.reveal-up');
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (!els.length) return;
+      if (reduce || !('IntersectionObserver' in window)) {
+        els.forEach(function (el) { el.classList.remove('reveal-up'); });
+        return;
+      }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (!e.isIntersecting) return;
+          var el = e.target;
+          el.classList.add('is-visible');
+          io.unobserve(el);
+          // Drop the classes once the entrance finishes so hover transitions stay snappy
+          setTimeout(function () { el.classList.remove('reveal-up', 'is-visible'); }, 1100);
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+      els.forEach(function (el) { io.observe(el); });
+    })();
   </script>
 
 </body>
