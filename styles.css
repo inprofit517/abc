@@ -602,7 +602,7 @@ body.booking-open .booking-modal { transform: none; }
 .leistungen {
   position: relative;
   z-index: 2;
-  background: var(--ink);
+  background: #1b1c14;
   padding: clamp(72px, 10vw, 132px) var(--pad-x);
   border-top-left-radius: clamp(20px, 2.6vw, 34px);
   border-top-right-radius: clamp(20px, 2.6vw, 34px);
